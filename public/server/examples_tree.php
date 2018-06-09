@@ -10,7 +10,11 @@
 			if (is_dir($dir.DIRECTORY_SEPARATOR.$name)) {
 				$result[] = array('name' => $name, 'children' => dirToArray($dir.DIRECTORY_SEPARATOR.$name));
 			} else {
-				$result[] = array('name' => $name);
+				if (strpos($name, '.js') === false) {
+					continue;
+				}
+
+				$result[] = array('name' => str_replace('.js', '', $name));
 			}
 		}
 

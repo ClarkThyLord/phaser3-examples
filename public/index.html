@@ -48,7 +48,7 @@
 
 					<div role="alert" style="bottom: 5px; left:2%; width: 96%; vertical-align: middle; align-items: center; z-index: 100;" class="alert alert-dark d-flex position-sticky shadow">
 						<div style="vertical-align: middle; align-items: center;" class="flex-fill d-flex align-items-start flex-column">
-							<a href="#" onclick="return false;" style="">
+							<a href="#" onclick="content_switch('about'); return false;" style="">
 									About
 								</a>
 						</div>
@@ -61,10 +61,10 @@
 					</div>
 			</nav>
 
-			<!-- CONTENT -->
-			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" id="view">
+			<!-- ABOUT -->
+			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" id="about">
 				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-					<h1 class="h2">Phaser 3 - Examples</h1>
+					<h1 class="h2">About Phaser 3 - Examples</h1>
 				</div>
 
 				<div class="content" id="about">
@@ -91,12 +91,18 @@
 							<div class="card-body">
 								<h5 class="card-title">Editor</h5>
 								<p class="card-text">Edit a existing example or create a Phaser 3 project from scratch!</p>
-								<a href="#" class="btn btn-primary">Open</a>
+								<a href="#" onclick="content_switch('editor'); return false;" class="btn btn-primary">Open</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</main>
+
+			<!-- PREVIEW -->
+			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" id="editor"></main>
+
+			<!-- EDITOR -->
+			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" id="editor"></main>
 			</div>
 		</div>
 	</div>
