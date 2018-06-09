@@ -1,445 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Phaser 3 Examples</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
-        <link rel="stylesheet" href="./css/bootstrap.min.css">
-        <link rel="stylesheet" href="./css/index.css">
-        <script src="./js/jquery-3.1.1.min.js"></script>
-        <script src="./js/getQueryString.js"></script>
-    </head>
-    <body>
 
-    <nav class="breadcrumb" id="breadcrumb">
-        <a href="index.html"><img src="images/logo.png" width="144" height="31" /></a>
-		<div class="search">
-			<input id="search-query">
-			<div class="search-icon-wrapper">
-				<div class="search-icon">
-					<div class="search-icon-circle"></div>
-					<div class="search-icon-rectangle"></div>
+<head>
+	<link rel="shortcut icon" href="./images/phaser.ico" type="image/x-icon" />
+	<title>Phaser 3 - Examples</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<link rel="stylesheet" href="./css/libs/jqtree.css">
+
+	<link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+	<!-- NAVBAR -->
+	<nav class="navbar navbar-dark fixed-top bg-dark flex-nowrap p-0 shadow">
+		<a class="navbar-brand mr-0" href="#">
+				<span class="p-2">
+					<img src="./images/phaser.ico">
+					Phaser 3 - Examples
+				</span>
+			</a>
+
+		<input type="text" placeholder="Search..." oninput="search(this.value); $('.search_gui').val(this.value);" class="form-control form-control-dark w-100 d-none d-md-block search_gui" />
+
+		<ul class="navbar-nav px-3">
+			<li class="nav-item text-nowrap">
+				<a class="nav-link" href="#" onclick="toggle_sidemenu(); return false;">☰</a>
+			</li>
+		</ul>
+	</nav>
+
+	<!-- CONTENT -->
+	<div class="container-fluid">
+		<div class="row">
+			<!-- SIDEBAR -->
+			<nav data-state="false" class="col-md-2 d-none d-md-block bg-light sidebar" id="sidebar">
+				<div class="sidebar-sticky">
+					<input type="text" placeholder="Search..." oninput="search(this.value); $('.search_gui').val(this.value);" class="form-control w-100 m-2 d-md-none d-block search_gui" />
+
+					<div class="m-2" id="files_gui">
+
+					</div>
+
+					<div role="alert" style="bottom: 5px; left:2%; width: 96%; vertical-align: middle; align-items: center; z-index: 100;" class="alert alert-dark d-flex position-sticky shadow">
+						<div style="vertical-align: middle; align-items: center;" class="flex-fill d-flex align-items-start flex-column">
+							<a href="#" onclick="return false;" style="">
+									About
+								</a>
+						</div>
+
+						<div class="flex-fill d-flex align-items-end flex-column">
+							<a href="https://github.com/photonstorm/phaser3-examples" style="text-decoration: none;">
+									<img src="./images/github.ico" style="width: 30px;">
+								</a>
+						</div>
+					</div>
+			</nav>
+
+			<!-- CONTENT -->
+			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" id="view">
+				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+					<h1 class="h2">Phaser 3 - Examples</h1>
 				</div>
+
+				<div class="content" id="about">
+					<div class="card mb-3">
+						<img class="card-img-top img-fluid" src="./images/phaser-art.jpg" alt="Card image cap">
+						<div class="card-body position-relative">
+							<h5 class="card-title">
+									<i>“The road to learning by precept is long, but by example short and effective.” ―Lucius Annaeus Seneca</i>
+								</h5>
+							<p class="card-text">Learn Phaser 3 via the hundreds of examples we've provided here!</p>
+						</div>
+					</div>
+
+					<div class="card-group">
+						<div class="card m-2 border rounded">
+							<div class="card-body">
+								<h5 class="card-title">Random Example</h5>
+								<p class="card-text">View a random Phaser 3 example.</p>
+								<a href="#" class="btn btn-primary">I'm feeling lucky!</a>
+							</div>
+						</div>
+
+						<div class="card m-2 border rounded">
+							<div class="card-body">
+								<h5 class="card-title">Editor</h5>
+								<p class="card-text">Edit a existing example or create a Phaser 3 project from scratch!</p>
+								<a href="#" class="btn btn-primary">Open</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
 			</div>
 		</div>
-        <a class="breadcrumb-item" href="index.html">Home</a>
-    </nav>
+	</div>
 
-    <div class="album">
-        <div class="container">
-            <div class="row" id="folderList"></div>
-        </div>
-    </div>
+	<!-- JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+	<script src="./js/libs/tree.jquery.js"></script>
 
-    <script type="text/javascript">
+	<script src="./js/index.js"></script>
+</body>
 
-    var data = {};
-    var folder = [];
-    var trail = [];
-    var well = [];
-
-    function openFolder ()
-    {
-        $('#folderList').empty();
-
-        createBackFolder();
-
-        var isBootable = false;
-
-        for (var i = 0; i < folder.length; i++)
-        {
-            var child = folder[i];
-
-            if (child.name === 'boot.json')
-            {
-                isBootable = true;
-
-                break;
-            }
-        }
-
-        if (isBootable)
-        {
-            createBootFile(i, child.name, child.path);
-        }
-        else
-        {
-            for (var i = 0; i < folder.length; i++)
-            {
-                var child = folder[i];
-
-                if (child.hasOwnProperty('children'))
-                {
-                    createFolder(i, child.name, child.path);
-                }
-                else
-                {
-                    createFile(i, child.name, child.path);
-                }
-            }
-        }
-
-        //  Update browser history
-
-        var stateObj = { well: well };
-
-        history.pushState(stateObj, '', 'index.html' + getURLWell());
-    }
-
-    function getURLWell (skipLast, add)
-    {
-        if (skipLast === undefined) { skipLast = false; }
-
-        var output = '';
-        var len = (skipLast) ? well.length - 1 : well.length;
-
-        for (var i = 0; i < len; i++)
-        {
-            output = output.concat(encodeURI(well[i])) + '/';
-        }
-
-        if (add !== undefined)
-        {
-            output = output.concat(encodeURI(add)) + '/';
-        }
-
-        return '?dir=' + output + '&q=' + $('#search-query').val();
-    }
-
-    function addBreadcrumb (filename)
-    {
-        var nav = $('<a></a>', { class: 'breadcrumb-item', href: 'index.html' + getURLWell() }).text(filename);
-
-        $('#breadcrumb').append(nav);
-    }
-
-    function removeBreadcrumb ()
-    {
-        $('#breadcrumb > a').last().remove();
-    }
-
-    function downLevel (index, filename, skipOpen)
-    {
-        if (skipOpen === undefined) { skipOpen = false; }
-
-        if (!folder[index].hasOwnProperty('children'))
-        {
-            // console.log('No children, aborting');
-            return;
-        }
-
-        //  Record the trail
-        trail.push(folder);
-
-        folder = folder[index].children;
-
-        well.push(filename);
-
-        addBreadcrumb(filename);
-
-        if (!skipOpen)
-        {
-            openFolder();
-        }
-    }
-
-    function upLevel ()
-    {
-        removeBreadcrumb();
-
-        if (trail.length === 1)
-        {
-            createTopLevelFolders();
-        }
-        else
-        {
-            folder = trail[trail.length - 1];
-
-            trail.pop();
-
-            well.pop();
-
-            openFolder();
-        }
-    }
-
-    function createBackFolder ()
-    {
-        var div = $('<div></div>').addClass('card');
-
-        var a = $('<a></a>', { href: 'index.html' + getURLWell(true) });
-
-        var img = $('<img />', { src: 'images/back.png', width: 128, height: 128 });
-
-        img.click(function (event) {
-
-            // console.log('<- Back');
-
-            upLevel();
-        });
-
-        a.append(img);
-
-        var p = $('<p></p>').addClass('card-text');
-        p.append($('<a></a>', { href: 'index.html' + getURLWell(true) }).text('Back'));
-
-        div.append(a).append(p);
-
-        $('#folderList').append(div);
-    }
-
-    function createBootFile (index, filename, filepath)
-    {
-        var div = $('<div></div>').addClass('card');
-
-        var a = $('<a></a>', { href: 'boot.html?src=' + filepath });
-
-        var img = $('<img />', { src: 'images/joystick.png', width: 128, height: 128 });
-
-        a.append(img);
-
-        var p = $('<p></p>').addClass('card-text').text('Play Game');
-        // p.append($('<a></a>', { href: 'edit.html?src=' + filepath }).text(filename.replace('.js', '')));
-
-        div.append(a).append(p);
-
-        $('#folderList').append(div);
-    }
-
-    function createFile (index, filename, filepath)
-    {
-        if (filename.substr(0, 1) === '_')
-        {
-            return;
-        }
-
-        var div = $('<div></div>').addClass('card');
-
-        var a = $('<a></a>', { href: 'view.html?src=' + filepath });
-
-        var img = $('<img />', { src: 'images/doc.png', width: 128, height: 128 });
-
-        a.append(img);
-
-        var p = $('<p></p>').addClass('card-text');
-        p.append($('<a></a>', { href: 'edit.html?src=' + filepath }).text(filename.replace('.js', '')));
-
-        div.append(a).append(p);
-
-        $('#folderList').append(div);
-    }
-
-    function createFolder (index, filename, filepath)
-    {
-        if (filename === 'archived' || filename.substr(0, 1) === '_')
-        {
-            return;
-        }
-
-        var div = $('<div></div>').addClass('card');
-
-        var a = $('<a></a>', { href: 'index.html' + getURLWell(false, filename) });
-
-        var img = $('<img />', { src: 'images/phaser-folder.png', width: 128, height: 128 });
-
-        img.click(function (event) {
-
-            // console.log('-> ' + filename);
-
-            downLevel(index, filename);
-
-        });
-
-        a.append(img);
-
-        var p = $('<p></p>').addClass('card-text');
-        p.append($('<a></a>', { href: 'index.html' + getURLWell(false, filename) }).text(filename));
-
-        div.append(a).append(p);
-
-        $('#folderList').append(div);
-    }
-
-    function createTopLevelFolders ()
-    {
-        $('#folderList').empty();
-
-        trail = [];
-        well = [];
-        folder = data.children;
-
-        for (var i = 0; i < folder.length; i++)
-        {
-            createFolder(i, folder[i].name, folder[i].path);
-        }
-    }
-
-    function loadFolders (param)
-    {
-        trail = [];
-        well = [];
-        folder = data.children;
-
-        var dirs = [];
-        var raw = param.split('/');
-
-        for (var i = 0; i < raw.length; i++)
-        {
-            raw[i] = decodeURI(raw[i]);
-
-            if (raw[i] !== '')
-            {
-                dirs.push(raw[i]);
-            }
-        }
-
-        var current = data.children;
-
-        dirs.forEach(function(level) {
-
-            for (i = 0; i < current.length; i++)
-            {
-                if (current[i].name === level)
-                {
-                    downLevel(i, current[i].name, true);
-
-                    current = current[i].children;
-
-                    break;
-                }
-            }
-
-        });
-
-        openFolder();
-
-    }
-
-    var originalData = null;
-
-    function copyItemData(item, children)
-    {
-        var copy = {children: children};
-        
-        for (var i in item) {
-            if (i !== 'children') {
-                copy[i] = item[i];
-            }
-        }
-        
-        return copy;
-    }
-
-    function searchQueryRecursive(regex, folder) {
-        
-        var include = [];
-        
-        for (var i = 0; i < folder.children.length; i++)
-        {
-            var item = folder.children[i];
-            if (item.children) {
-                var children = searchQueryRecursive(regex, item);
-                
-                if (children) {
-                    include.push(children);
-                }
-            }
-        }
-        
-        if (regex.test(folder.name) && include.length === 0)
-        {
-            include = folder.children;
-        }
-        
-        if (include.length > 0) {
-            return copyItemData(folder, include);
-        }
-    }
-
-    function debounce(func, wait, callback) {
-        
-        var timeout;
-
-        return function() {
-            
-            var context = this;
-            var args = arguments;
-
-            var later = function() {
-                timeout = null;
-                func.apply(context, args);
-            };
-            
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    };
-
-    function search(query) {
-        
-        var result = searchQueryRecursive(new RegExp(query, 'gi'), data);
-        
-        data = result ? result : originalData;
-        createTopLevelFolders();
-    }
-
-    $(document).ready(function () {
-
-        var prevQuery = '';
-        var delayedSearch = debounce(search, 500);
-        
-        $('#search-query').on('keyup', function (event) {
-
-            var query = $(this).val();
-
-            if (!query)
-            {
-                data = originalData;
-                originalData = null;
-                
-                createTopLevelFolders();
-            }
-            else if (query !== prevQuery)
-            {
-                prevQuery = query;
-                
-                if (!originalData) {
-                    originalData = data;
-                }
-                
-                delayedSearch(query);
-            }
-            
-        })
-
-        $.getJSON('examples.json', function (json) {
-
-            data = json;
-
-            var dir = getQueryString('dir');
-            var q = getQueryString('q');
-            
-            $('#search-query').val(q);
-            
-            if (q) {
-                search(q);
-            }
-
-            if (dir)
-            {
-                loadFolders(dir);
-            }
-            else
-            {
-                createTopLevelFolders();
-            }
-
-        });
-
-    });
-        
-    </script>
-
-    </body>
 </html>
