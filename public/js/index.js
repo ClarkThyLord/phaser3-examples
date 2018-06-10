@@ -1,6 +1,7 @@
-var files;
+var files, editor;
 
 $(function() {
+    content_switch('about');
     $.get('./server/examples_tree.php', function(response) {
         if (response.success) {
             files = response.data.dump;
@@ -15,6 +16,8 @@ $(function() {
             alert(response.reason || 'Unknown error occurred!');
         }
     });
+
+    editor = ace.edit("editor_gui");
 });
 
 

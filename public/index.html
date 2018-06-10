@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%;">
 
 <head>
 	<link rel="shortcut icon" href="./images/phaser.ico" type="image/x-icon" />
@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="./css/index.css">
 </head>
 
-<body>
+<body style="height: 100%;">
 	<!-- NAVBAR -->
 	<nav class="navbar navbar-dark fixed-top bg-dark flex-nowrap p-0 shadow">
 		<a class="navbar-brand mr-0" href="#">
@@ -28,15 +28,15 @@
 		<input type="text" placeholder="Search..." oninput="search(this.value); $('.search_gui').val(this.value);" class="form-control form-control-dark w-100 d-none d-md-block search_gui" />
 
 		<ul class="navbar-nav px-3">
-			<li class="nav-item text-nowrap">
-				<a class="nav-link" href="#" onclick="toggle_sidemenu(); return false;">☰</a>
+			<li onclick="toggle_sidemenu();" style="cursor: pointer;" class="nav-item text-nowrap text-light">
+				☰
 			</li>
 		</ul>
 	</nav>
 
 	<!-- CONTENT -->
-	<div class="container-fluid">
-		<div class="row">
+	<div class="h-100 container-fluid">
+		<div class="h-100 row">
 			<!-- SIDEBAR -->
 			<nav data-state="false" class="col-md-2 d-none d-md-block bg-light sidebar" id="sidebar">
 				<div class="sidebar-sticky">
@@ -59,10 +59,11 @@
 								</a>
 						</div>
 					</div>
+				</div>
 			</nav>
 
 			<!-- ABOUT -->
-			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" id="about">
+			<main role="main" class="h-100 col-md-9 ml-sm-auto col-lg-10 px-4" id="about">
 				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 					<h1 class="h2">About Phaser 3 - Examples</h1>
 				</div>
@@ -83,7 +84,7 @@
 							<div class="card-body">
 								<h5 class="card-title">Random Example</h5>
 								<p class="card-text">View a random Phaser 3 example.</p>
-								<a href="#" class="btn btn-primary">I'm feeling lucky!</a>
+								<a href="#" onclick="content_switch('preview'); return false;" class="btn btn-primary">I'm feeling lucky!</a>
 							</div>
 						</div>
 
@@ -99,11 +100,32 @@
 			</main>
 
 			<!-- PREVIEW -->
-			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" id="editor"></main>
+			<main role="main" class="h-100 col-md-9 ml-sm-auto col-lg-10 px-4" id="preview"></main>
 
 			<!-- EDITOR -->
-			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" id="editor"></main>
-			</div>
+			<main role="main" class="h-100 col-md-9 ml-sm-auto col-lg-10 px-4" id="editor">
+				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+					<h1 class="h2">Editor</h1>
+				</div>
+
+				<div class="h-100 d-flex flex-wrap">
+					<iframe class="w-100 h-50 m-2 shadow border rounded bg-dark"></iframe>
+
+					<div class="m-1 p-2 w-100 d-sm-inline d-md-block border rounded bg-secondary">
+						<input type="button" value="New project" class="btn btn-danger btn-sm" />
+						<input type="button" value="Save" class="btn btn-success btn-sm" />
+						<input type="button" value="Phaser Version" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="#">Phaser 3</a>
+						</div>
+
+						<input type="button" value="⇱ Full Screen game" class="btn btn-dark btn-sm float-md-right" />
+						<input type="button" value="⇱ Full Screen editor" class="btn btn-dark btn-sm float-md-right" />
+					</div>
+
+					<div class="w-100 h-50 m-2 shadow border rounded" id="editor_gui"></div>
+				</div>
+			</main>
 		</div>
 	</div>
 
@@ -112,6 +134,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 	<script src="./js/libs/tree.jquery.js"></script>
+	<script src="./js/libs/ace-min-noconflict/ace.js"></script>
 
 	<script src="./js/index.js"></script>
 </body>
