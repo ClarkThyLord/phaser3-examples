@@ -18,14 +18,14 @@
 <body style="height: 100%;">
 	<!-- NAVBAR -->
 	<nav class="navbar navbar-dark fixed-top bg-dark flex-nowrap p-0 shadow">
-		<a class="navbar-brand mr-0" href="#">
+		<a class="navbar-brand mr-0 text-light">
 				<span class="p-2">
 					<img src="./images/phaser.ico">
 					Phaser 3 - Examples
 				</span>
 			</a>
 
-		<input type="text" placeholder="Search..." oninput="search(this.value); $('.search_gui').val(this.value);" class="form-control form-control-dark w-100 d-none d-md-block search_gui" />
+		<input type="text" placeholder="Search..." oninput="example_search(this.value); $('.search_gui').val(this.value);" class="form-control form-control-dark w-100 d-none d-md-block search_gui" />
 
 		<ul class="navbar-nav px-3">
 			<li onclick="toggle_sidemenu();" style="cursor: pointer;" class="nav-item text-nowrap text-light">
@@ -40,9 +40,9 @@
 			<!-- SIDEBAR -->
 			<nav data-state="false" class="col-md-2 d-none d-md-block bg-light sidebar" id="sidebar">
 				<div class="sidebar-sticky">
-					<input type="text" placeholder="Search..." oninput="search(this.value); $('.search_gui').val(this.value);" class="form-control w-100 m-2 d-md-none d-block search_gui" />
+					<input type="text" placeholder="Search..." oninput="example_search(this.value); $('.search_gui').val(this.value);" class="form-control w-100 m-2 d-md-none d-block search_gui" />
 
-					<div class="m-2" id="files_gui">
+					<div class="m-2" id="examples_gui">
 
 					</div>
 
@@ -111,16 +111,16 @@
 				<div class="h-100 d-flex flex-wrap">
 					<iframe class="w-100 h-50 m-2 shadow border rounded bg-dark"></iframe>
 
-					<div class="m-1 p-2 w-100 d-sm-inline d-md-block border rounded bg-secondary">
-						<input type="button" value="New project" class="btn btn-danger btn-sm" />
-						<input type="button" value="Save" class="btn btn-success btn-sm" />
-						<input type="button" value="Phaser Version" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">Phaser 3</a>
-						</div>
+					<div class="m-1 p-2 w-100 d-sm-inline d-md-block border rounded bg-secondary text-center">
+						<input type="button" value="New project" class="m-1 btn btn-danger btn-sm float-md-left" />
+						<input type="button" value="Save" class="m-1 btn btn-success btn-sm float-md-left" />
+						<select style="padding: 2px;" class="m-1 rounded shadow float-md-left">
+							<option selected>Phaser Version</option>
+							<option value="3.0.0">Phaser 3</option>
+						</select>
 
-						<input type="button" value="⇱ Full Screen game" class="btn btn-dark btn-sm float-md-right" />
-						<input type="button" value="⇱ Full Screen editor" class="btn btn-dark btn-sm float-md-right" />
+						<input type="button" value="⇱ Full Screen game" class="m-1 btn btn-dark btn-sm float-md-right" />
+						<input type="button" value="⇱ Full Screen editor" class="m-1 btn btn-dark btn-sm float-md-right" />
 					</div>
 
 					<div class="w-100 h-50 m-2 shadow border rounded" id="editor_gui"></div>

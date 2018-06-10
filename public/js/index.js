@@ -1,17 +1,21 @@
-var files, editor;
+var examples, editor;
 
 $(function() {
     content_switch('about');
     $.get('./server/examples_tree.php', function(response) {
         if (response.success) {
-            files = response.data.dump;
+            examples = response.data.dump;
 
-            $('#files_gui').tree({
-                data: files,
+            $('#examples_gui').tree({
+                data: examples,
                 autoOpen: true,
                 openedIcon: '-',
                 closedIcon: '+'
-            });
+            }).on('tree.select',
+                function(event) {
+                    // TODO Load selected example
+                    console.log(event.node);
+                });
         } else {
             alert(response.reason || 'Unknown error occurred!');
         }
@@ -71,7 +75,7 @@ function content_switch(identifier, options) {
  * @param {String} search_term Search term used to find file.
  * @return {undefined} Returns nothing.
  */
-function search(search_term) {
+function example_search(search_term) {
     if (!search_term || search_term === '') {
         $('.jqtree-element[role="presentation"]').show();
     } else {
@@ -83,4 +87,13 @@ function search(search_term) {
             }
         });
     }
+}
+
+
+/**
+ * Picks a random example to view.
+ * @return {undefined} Returns nothing.
+ */
+function example_random() {
+
 }
